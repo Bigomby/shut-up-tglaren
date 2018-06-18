@@ -1,0 +1,10 @@
+[package]
+name = "shut-up-tglaren"
+version = "0.1.0"
+authors = ["Diego Fernández Barrera <bigomby@gmail.com>"]
+
+[dependencies]
+telegram-bot = "0.6.1"
+futures = "0.1"
+tokio-core = "0.1"
+regex = "1.0.0"
