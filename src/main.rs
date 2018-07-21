@@ -15,6 +15,7 @@ fn process(api: &Api, message: Message, users: Vec<User>, re: &Regex) {
     users.into_iter().for_each(|user| {
         if re.is_match(&user.first_name) {
             api.spawn(DeleteMessage::new(chat_id, &message));
+            api.spawn(KickChatMember::new(chat_id, &user.id));
         }
     });
 }
