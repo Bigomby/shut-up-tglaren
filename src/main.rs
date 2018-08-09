@@ -23,11 +23,11 @@ fn process(api: &Api, message: Message, users: Vec<User>, re: &Regex) {
 fn main() {
     let mut core = Core::new().unwrap();
 
-    let token = env::var("TELEGRAM_BOT_TOKEN").unwrap();
-    let name_re = env::var("NAME_REGEX").unwrap();
+    let token = env::var("TELEGRAM_BOT_TOKEN").expect("TELEGRAM_BOT_TOKEN env is required");
+    let name_re = env::var("NAME_REGEX").expect("NAME_REGEX env is required");
 
     let api = Api::configure(token).build(core.handle()).unwrap();
-    let re = Regex::new(&name_re).unwrap();
+    let re = Regex::new(&name_re).expect("Invalid regex");
 
     let future = api.stream().for_each(|update| {
         if let UpdateKind::Message(message) = update.kind {
